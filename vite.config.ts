@@ -9,5 +9,5 @@ export default defineConfig({
       web3: 'web3/dist/web3.min.js',
     },
   },
-  base: '/react-shopping-cart/',
+  base: '/react-shopping-cart/dist',
 });
