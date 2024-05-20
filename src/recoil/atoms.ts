@@ -1,11 +1,13 @@
-import { AtomEffect, atomFamily, selectorFamily } from "recoil";
-import CartItemLocalStorage from "../services/CartItemLocalStorage";
-import { cartListState } from "./selectors";
+import { AtomEffect, atomFamily, selectorFamily } from 'recoil';
+import { cartListState } from './selectors';
+
+import CartItemLocalStorage from '../services/CartItemLocalStorage';
+import { CART_ITEM_SELECTED_KEY } from './../services/CartItemLocalStorage';
 
 const cartItemQuantity = atomFamily<number, number>({
-  key: "cartItemQuantity",
+  key: 'cartItemQuantity',
   default: selectorFamily({
-    key: "initialCartItemQuantity",
+    key: 'initialCartItemQuantity',
     get:
       (id) =>
       ({ get }) => {
@@ -17,9 +19,9 @@ const cartItemQuantity = atomFamily<number, number>({
 });
 
 const cartItemSelected = atomFamily<boolean, number>({
-  key: "cartItemSelected",
+  key: 'cartItemSelected',
   default: (id: number) => {
-    const storageState = CartItemLocalStorage.get("cartItemSelected");
+    const storageState = CartItemLocalStorage.get(CART_ITEM_SELECTED_KEY);
 
     if (storageState) {
       return storageState[id];
@@ -30,10 +32,10 @@ const cartItemSelected = atomFamily<boolean, number>({
     ({ onSet }) => {
       onSet((newValue) => {
         // storage 업데이트
-        const storageState = CartItemLocalStorage.get("cartItemSelected");
+        const storageState = CartItemLocalStorage.get(CART_ITEM_SELECTED_KEY);
         if (storageState) {
           storageState[id] = newValue;
-          CartItemLocalStorage.set("cartItemSelected", storageState);
+          CartItemLocalStorage.set(CART_ITEM_SELECTED_KEY, storageState);
         }
       });
     },
