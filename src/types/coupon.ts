@@ -1,6 +1,8 @@
+import { TimeStamp } from './templateLiteral';
+
 type ExpirationDate = string;
 type MinimumAmount = number;
-type AvailableTime = { start: string; end: string };
+type AvailableTime = { start: TimeStamp; end: TimeStamp };
 export type CouponCode = 'FIXED5000' | 'BOGO' | 'FREESHIPPING' | 'MIRACLESALE';
 export type DiscountType = 'percentage' | 'freeShipping' | 'buyXgetY' | 'fixed';
 
