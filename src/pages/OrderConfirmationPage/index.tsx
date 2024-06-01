@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import * as C from '../../components/commonStyles';
+import * as C from '../../components/common/commonStyles';
 import * as S from './styles';
 
 import CartList from '../../components/CartList';
@@ -25,7 +25,7 @@ export default function OrderConfirmationPage() {
   const navigate = useNavigate();
 
   const makeOrder = async () => {
-    postOrders(selectedItems.map((item) => item.id)).then(() => {
+    await postOrders(selectedItems.map((item) => item.id)).then(() => {
       navigate('/checkout');
     });
   };
@@ -40,7 +40,6 @@ export default function OrderConfirmationPage() {
       }
     >
       <S.Wrapper>
-        {/* Header */}
         <S.HeaderContainer>
           <C.Title>주문 확인</C.Title>
 
@@ -53,13 +52,10 @@ export default function OrderConfirmationPage() {
 
         <CartList summary items={selectedItems} />
 
-        {/* 쿠폰 선택 모달 */}
         <CouponModal />
 
-        {/* 배송 정보 */}
         <ShippingInfo />
 
-        {/* 주문 요약 */}
         <CheckoutSummary
           totalPrice={totalPrice}
           coupon={totalDiscount}
